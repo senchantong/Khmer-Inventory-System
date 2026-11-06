@@ -1,10 +1,19 @@
-# Khmer Inventory System POS v2
+# Khmer Inventory System — Login Fix v2
 
-1. Backup GitHub repository ដើម (Download ZIP) ជាមុន។ កុំលុប repository ឬ Supabase table `products` ចាស់។
-2. ពិនិត្យតម្លៃ `products.price`៖ កំណែនេះសន្មត់ថាតម្លៃគឺ USD។ បើតម្លៃចាស់ជារៀល សូមកុំប្រើ POS រហូតដល់បម្លែងតម្លៃឱ្យត្រឹមត្រូវ។
-3. Supabase project ដដែល → SQL Editor → New query → copy `supabase/migration_v2.sql` ទាំងអស់ → Run។ SQL រំពឹងថា `products.id` ជា BIGINT និងមាន columns `name`, `sku`, `quantity`, `price`។ បើមាន error សូមឈប់ និងផ្ញើ screenshot មក។
-4. GitHub repository `senchantong/Khmer-Inventory-System` ដដែល៖ replace `index.html`, `style.css`, `app.js`; upload folder `supabase` និង `README.md`; commit ទៅ `main`។ Refresh GitHub Pages ក្រោយ 1–3 នាទី។
+1. Back up the current GitHub files.
+2. Replace root `index.html`, `style.css`, and `app.js` with these files.
+3. Commit to the `main` branch and wait for GitHub Pages to publish.
+4. Open the site, refresh it, and try logging in again.
 
-រួមមាន login, product tiles/search, cart, customer info, discount, USD/KHR payment, exchange rate, printable invoice (Print → Save as PDF), sales history, daily sales/cost/profit estimate, និង stock deduction តាម database RPC។
+The app now restores an existing Supabase session, listens for login/logout events, and displays the actual Supabase error instead of silently staying on the login page.
 
-សំខាន់៖ `cost_price` ត្រូវបញ្ចូលសម្រាប់គណនាចំណេញ។ Policy ផលិតផលក្នុង migration នេះអនុញ្ញាត CRUD ដល់អ្នក login ទាំងអស់ ដូច្នេះប្រើតែអ្នកដែលទុកចិត្តបាន; មុនបើកឱ្យបុគ្គលិកច្រើន គួររឹតបន្តឹង policy តាម role។ កំណែនេះមិនទាន់មានការទូទាត់បំបែក USD និង KHR ក្នុងប្រតិបត្តិការតែមួយទេ។ ប្រើតែ publishable/anon key ក្នុង browser; កុំដាក់ service_role key។
+This frontend expects the existing Supabase project and these database objects:
+- `products` with `id` BIGINT, `name`, `sku`, `quantity`, `price`, `cost_price`
+- `sales` table
+- RPC `public.create_sale(...)`
+
+**Do not run the migration again if it already completed successfully.** This package does not replace your database migration.
+
+Product prices and cost prices are treated as USD. KHR payment uses the exchange rate entered on the POS screen.
+
+Never put a Supabase `service_role` or secret key in browser code. The publishable key in `app.js` is intended for public browser use. Review and tighten RLS policies before giving staff access.
