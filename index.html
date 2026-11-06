@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Khmer Inventory System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">📦 Khmer Inventory</div>
+    <div class="user-area"><span id="user-label">មិនទាន់ចូលគណនី</span><button id="logout-btn" class="secondary hidden">ចាកចេញ</button></div>
+  </header>
+
+  <main class="container">
+    <section id="login-panel" class="panel login-panel">
+      <h1>ប្រព័ន្ធគ្រប់គ្រងស្តុកទំនិញ</h1>
+      <p class="muted">សូមចូលគណនីដើម្បីប្រើប្រាស់ប្រព័ន្ធ</p>
+      <form id="login-form">
+        <label>អ៊ីមែល<input id="email" type="email" required placeholder="name@example.com"></label>
+        <label>ពាក្យសម្ងាត់<input id="password" type="password" required placeholder="••••••••"></label>
+        <button type="submit">ចូលគណនី</button>
+      </form>
+      <p id="login-message" class="message"></p>
+    </section>
+
+    <section id="app-panel" class="hidden">
+      <div class="heading-row">
+        <div><h1>ផ្ទាំងគ្រប់គ្រង</h1><p class="muted">គ្រប់គ្រងទំនិញ និងចំនួនស្តុក</p></div>
+        <button id="refresh-btn" class="secondary">ធ្វើបច្ចុប្បន្នភាព</button>
+      </div>
+      <div class="stats">
+        <article class="stat"><span>មុខទំនិញសរុប</span><strong id="total-items">0</strong></article>
+        <article class="stat"><span>ចំនួនស្តុកសរុប</span><strong id="total-stock">0</strong></article>
+        <article class="stat"><span>ស្តុកជិតអស់ (≤ 5)</span><strong id="low-stock">0</strong></article>
+      </div>
+
+      <section class="panel">
+        <h2 id="form-title">បន្ថែមទំនិញថ្មី</h2>
+        <form id="product-form" class="product-form">
+          <input id="product-id" type="hidden">
+          <label>ឈ្មោះទំនិញ<input id="product-name" required placeholder="ឧ. អង្ករ"></label>
+          <label>លេខកូដ (SKU)<input id="product-sku" placeholder="ឧ. RICE-001"></label>
+          <label>ចំនួន<input id="product-quantity" type="number" min="0" value="0" required></label>
+          <label>តម្លៃ<input id="product-price" type="number" min="0" step="0.01" value="0"></label>
+          <div class="form-actions"><button type="submit" id="save-btn">រក្សាទុក</button><button type="button" id="cancel-edit" class="secondary hidden">បោះបង់</button></div>
+        </form>
+        <p id="form-message" class="message"></p>
+      </section>
+
+      <section class="panel">
+        <div class="heading-row"><h2>បញ្ជីទំនិញ</h2><input id="search" class="search" placeholder="ស្វែងរកទំនិញ..."></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>ឈ្មោះ</th><th>SKU</th><th>ចំនួន</th><th>តម្លៃ</th><th>សកម្មភាព</th></tr></thead>
+          <tbody id="product-list"><tr><td colspan="5" class="empty">កំពុងផ្ទុកទិន្នន័យ...</td></tr></tbody></table>
+        </div>
+      </section>
+    </section>
+    <p id="global-message" class="message"></p>
+  </main>
+  <footer>Khmer Inventory System · Built with Supabase</footer>
+</body>
+</html>
