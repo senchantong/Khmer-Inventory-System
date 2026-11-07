@@ -1,22 +1,41 @@
-# Khmer Inventory System PRO
+# Khmer Inventory System — Full POS package
 
-## Installation
-1. Back up your GitHub repository and Supabase database.
-2. Extract this ZIP and replace root `index.html`, `style.css`, `app.js` in your existing GitHub repo.
-3. Upload `supabase/migration_v2.sql` into the repo as well (for version history).
-4. In Supabase Dashboard → SQL Editor → New query, paste the migration and run it once.
-5. Wait for GitHub Pages to publish, then sign in.
+This is a mobile-friendly, Supabase-backed starter release with the requested core modules:
+Dashboard, POS checkout, products, categories, brands, invoices/print, sales history, customers, suppliers, stock in/out, expenses, reports/export, USD/KHR, owner/staff roles and shop settings.
 
-## Included
-- All 16 requested navigation menus and responsive mobile layout.
-- Supabase email/password login and session persistence.
-- Basic CRUD forms for products, categories, brands, customers, suppliers and expenses.
-- POS cart preview.
-- Additive migration for supporting tables.
+## Important compatibility notes
+- This package expects the existing `public.products` table to have: `id BIGINT`, `name`, `sku`, `quantity`, `price`.
+- It expects `public.profiles` to have `id UUID` referencing `auth.users(id)` and `display_name`, `role`. The SQL adds missing display_name/role columns but cannot safely guess a different existing primary-key structure.
+- Existing products and profiles are preserved. Do not drop existing tables.
+- Back up your Supabase project before running any SQL.
+- The app uses the publishable key in the browser. Never put a Supabase service_role/secret key in `app.js`.
 
-## Important: this is a first PRO foundation, not yet a completed accounting release
-Invoices, completed POS checkout, stock deduction/workflows, reports, persistent currency/settings and staff role management are placeholders pending confirmation of your existing sales schema and permissions. POS cart does not yet save sales or reduce stock. Do not rely on dashboard numbers for accounting yet.
+## Setup
+1. In Supabase, open SQL Editor. Back up your project first.
+2. Verify `products.id` is BIGINT and that `name`, `sku`, `quantity`, `price` exist. If not, stop and ask for a schema-specific migration.
+3. Run `supabase/full_setup.sql` once.
+4. Ensure the owner already has a row in `profiles` with `role='owner'` and `id` equal to the Auth user's UUID.
+5. Keep Supabase Auth email sign-in enabled. Sign in with the existing owner account.
+6. Upload the CONTENTS of this folder to the ROOT of the existing GitHub repository (index.html, app.js, style.css, supabase folder, README.md), replacing files at the same paths. Do not upload this whole folder as a nested folder.
+7. Open GitHub Pages and sign in.
 
-Migration preserves existing `products.price` values without conversion. It assumes `products.id` is BIGINT. If it is not, do not run the migration until the foreign key is adjusted. The starter RLS policy grants all authenticated users access to the new support tables; tighten this before creating staff accounts.
+## Staff accounts
+Create each staff account in Supabase Authentication first. Then add a matching `profiles` row with the exact Auth UUID, display name and role `staff`. Do not allow public sign-up for a private shop. Only the owner should be able to change roles.
 
-Only use a Supabase publishable key in browser code. Never expose service_role/secret keys.
+## Included transactional behavior
+- POS checkout calls `create_sale`, which validates payment, locks product rows, inserts invoice/items, reduces stock and records stock movement atomically.
+- Stock In/Out calls `record_stock_movement`, which validates stock and updates quantity atomically.
+- Sales reports and CSV export are included.
+
+## Current release limitations to verify before live business use
+- Product images are stored as image URLs; a Supabase Storage bucket and upload UI are not provisioned.
+- No barcode scanner workflow, refunds/voids, purchase-order receiving, tax/VAT rules, cash drawer, offline mode, or multi-branch support.
+- Staff permissions are role-level (owner/staff), not per-action configurable.
+- Test checkout, stock movements, role restrictions, invoice print, currency conversion, and backups with sample records before using real sales.
+- The app is not a certified accounting/tax system. Verify financial calculations and local compliance independently.
+
+## Troubleshooting
+- "Could not find table in schema cache": verify the SQL ran successfully in the correct Supabase project; then wait briefly and refresh. Check Table Editor for the table.
+- Login failure: verify Auth user exists, email/password are correct, and the matching profile row exists.
+- Permission denied: verify migration ran, `profiles.role` is owner/staff, and the logged-in user's profile UUID matches Auth UUID.
+- Never share a service_role key or database password.
