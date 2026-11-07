@@ -1,19 +1,22 @@
-# Khmer Inventory System — Login Fix v2
+# Khmer Inventory System PRO
 
-1. Back up the current GitHub files.
-2. Replace root `index.html`, `style.css`, and `app.js` with these files.
-3. Commit to the `main` branch and wait for GitHub Pages to publish.
-4. Open the site, refresh it, and try logging in again.
+## Installation
+1. Back up your GitHub repository and Supabase database.
+2. Extract this ZIP and replace root `index.html`, `style.css`, `app.js` in your existing GitHub repo.
+3. Upload `supabase/migration_v2.sql` into the repo as well (for version history).
+4. In Supabase Dashboard → SQL Editor → New query, paste the migration and run it once.
+5. Wait for GitHub Pages to publish, then sign in.
 
-The app now restores an existing Supabase session, listens for login/logout events, and displays the actual Supabase error instead of silently staying on the login page.
+## Included
+- All 16 requested navigation menus and responsive mobile layout.
+- Supabase email/password login and session persistence.
+- Basic CRUD forms for products, categories, brands, customers, suppliers and expenses.
+- POS cart preview.
+- Additive migration for supporting tables.
 
-This frontend expects the existing Supabase project and these database objects:
-- `products` with `id` BIGINT, `name`, `sku`, `quantity`, `price`, `cost_price`
-- `sales` table
-- RPC `public.create_sale(...)`
+## Important: this is a first PRO foundation, not yet a completed accounting release
+Invoices, completed POS checkout, stock deduction/workflows, reports, persistent currency/settings and staff role management are placeholders pending confirmation of your existing sales schema and permissions. POS cart does not yet save sales or reduce stock. Do not rely on dashboard numbers for accounting yet.
 
-**Do not run the migration again if it already completed successfully.** This package does not replace your database migration.
+Migration preserves existing `products.price` values without conversion. It assumes `products.id` is BIGINT. If it is not, do not run the migration until the foreign key is adjusted. The starter RLS policy grants all authenticated users access to the new support tables; tighten this before creating staff accounts.
 
-Product prices and cost prices are treated as USD. KHR payment uses the exchange rate entered on the POS screen.
-
-Never put a Supabase `service_role` or secret key in browser code. The publishable key in `app.js` is intended for public browser use. Review and tighten RLS policies before giving staff access.
+Only use a Supabase publishable key in browser code. Never expose service_role/secret keys.

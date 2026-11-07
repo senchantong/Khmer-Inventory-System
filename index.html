@@ -1,31 +1,3 @@
-<!doctype html>
-<html lang="km"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Khmer Inventory System</title><link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script defer src="app.js"></script></head>
-<body><header><h1>Khmer Inventory System</h1><p>ប្រព័ន្ធគ្រប់គ្រងស្តុក និងការលក់</p><button id="logout" class="hide">ចាកចេញ</button></header>
-<main><div id="msg" class="hide" role="status"></div>
-<section id="login" class="card"><h2>ចូលប្រើប្រាស់</h2><form id="loginForm">
-<label>Email</label><input id="email" type="email" autocomplete="username" required>
-<label>Password</label><input id="password" type="password" autocomplete="current-password" required>
-<button id="loginBtn">ចូលប្រព័ន្ធ</button></form></section>
-<section id="dashboard" class="hide">
-<div class="card"><h2>ផ្ទាំងគ្រប់គ្រង</h2><p id="who"></p><button id="refresh" class="secondary">ផ្ទុកទិន្នន័យឡើងវិញ</button></div>
-<div class="card"><h3>បន្ថែមផលិតផល</h3><form id="productForm" class="grid">
-<div><label>ឈ្មោះផលិតផល</label><input id="pname" required></div><div><label>SKU</label><input id="psku"></div>
-<div><label>ចំនួនស្តុក</label><input id="pqty" type="number" min="0" step=".01" value="0" required></div>
-<div><label>តម្លៃលក់ (USD)</label><input id="pprice" type="number" min="0" step=".01" value="0" required></div>
-<div><label>ថ្លៃដើម (USD)</label><input id="pcost" type="number" min="0" step=".01" value="0"></div><div class="end"><button>រក្សាទុកផលិតផល</button></div></form></div>
-<div class="card"><h3>បញ្ជីផលិតផល</h3><div class="scroll"><table><thead><tr><th>ឈ្មោះ</th><th>SKU</th><th>ស្តុក</th><th>តម្លៃ USD</th></tr></thead><tbody id="products"></tbody></table></div></div>
-<div class="card"><h3>POS — លក់ទំនិញ</h3><div class="grid">
-<div><label>ផលិតផល</label><select id="chooseProduct"></select></div><div><label>ចំនួន</label><input id="qty" type="number" min=".01" step=".01" value="1"></div>
-<div class="end"><button id="addCart" type="button">បន្ថែមទៅកន្ត្រក</button></div></div>
-<div class="scroll"><table><thead><tr><th>ផលិតផល</th><th>ចំនួន</th><th>សរុប</th><th></th></tr></thead><tbody id="cart"></tbody></table></div>
-<div class="grid">
-<div><label>ឈ្មោះអតិថិជន</label><input id="customer" placeholder="អតិថិជនទូទៅ"></div><div><label>លេខទូរស័ព្ទ</label><input id="phone"></div>
-<div><label>បញ្ចុះតម្លៃ USD</label><input id="discount" type="number" min="0" step=".01" value="0"></div>
-<div><label>អត្រា USD/KHR</label><input id="rate" type="number" min="1" value="4100"></div>
-<div><label>រូបិយប័ណ្ណទូទាត់</label><select id="currency"><option>USD</option><option>KHR</option></select></div>
-<div><label>ប្រាក់អតិថិជនបង់</label><input id="paid" type="number" min="0" step=".01" value="0"></div></div>
-<div class="total"><strong id="total">សរុប: $0.00</strong><button id="finish" type="button">បញ្ចប់ការលក់</button></div></div>
-<div class="card"><h3>ប្រវត្តិលក់ថ្មីៗ</h3><div class="scroll"><table><thead><tr><th>វិក្កយបត្រ</th><th>អតិថិជន</th><th>សរុប USD</th><th>កាលបរិច្ឆេទ</th></tr></thead><tbody id="sales"></tbody></table></div></div>
-</section></main><footer>Khmer Inventory System</footer></body></html>
+<!doctype html><html lang="km"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Khmer Inventory PRO</title><link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script defer src="app.js"></script></head><body>
+<div id="login" class="login"><form id="loginForm"><h1>Khmer Inventory PRO</h1><p>ប្រព័ន្ធគ្រប់គ្រងហាង</p><label>Email</label><input id="email" type="email" required><label>Password</label><input id="password" type="password" required><button>ចូលប្រព័ន្ធ</button><p id="loginMsg"></p></form></div>
+<div id="app" class="hidden"><aside><h2>KI PRO</h2><nav id="nav"></nav><button id="logout">ចាកចេញ</button></aside><main><header><button id="toggle">☰</button><b id="title">Dashboard</b><span id="user"></span></header><p id="msg"></p><div id="content"></div><footer>Khmer Inventory System PRO</footer></main></div></body></html>
