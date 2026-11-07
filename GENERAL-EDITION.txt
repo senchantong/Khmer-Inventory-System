@@ -1,0 +1,11 @@
+KHMER INVENTORY SYSTEM — GENERAL BUSINESS EDITION
+
+Designed as a general-purpose starting point for retail shops, mini marts, clothing shops, phone/accessory shops and other small businesses.
+
+Included in this package:
+- index.html, style.css, app.js
+- Supabase database setup SQL in supabase/full_setup.sql
+- README.md deployment instructions
+
+IMPORTANT:
+This is a starter release, not a production-verified system. Back up the database before running SQL. Verify the existing Supabase schema matches the assumptions in README.md and full_setup.sql. Do not put a Supabase service_role/secret key in app.js. The starter does not yet implement full purchase orders, debt collection/payment ledger, refunds/returns, cash register sessions, granular role permissions, PDF export, or product image storage. USD/KHR display is not automatic currency conversion.
