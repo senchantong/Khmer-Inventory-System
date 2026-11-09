@@ -2,7 +2,7 @@
 <html lang="km">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#11182f"><title>Khmer Inventory System</title>
+<meta name="theme-color" content="#11182f"><title>Khmer Inventory Pro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -10,14 +10,14 @@
 </head>
 <body>
 <div id="loginView" class="login-wrap">
- <div class="login-card"><div class="brand-mark">K<span>IS</span></div><h1>Khmer Inventory System</h1><p>ប្រព័ន្ធគ្រប់គ្រងហាង និងស្តុកទំនិញ</p>
+ <div class="login-card"><div class="brand-mark">K<span>IP</span></div><h1>Khmer Inventory Pro</h1><p>ប្រព័ន្ធគ្រប់គ្រងហាង និងស្តុកទំនិញ</p>
  <form id="loginForm"><label>Email</label><input id="email" type="email" autocomplete="username" required placeholder="owner@example.com"><label>Password</label><input id="password" type="password" autocomplete="current-password" required placeholder="••••••••"><button class="btn primary full">ចូលប្រើប្រាស់</button></form>
  <div id="loginError" class="error"></div><small>សូមប្រើគណនី Supabase Auth ដែលមានស្រាប់។</small></div>
 </div>
 <div id="appView" class="app hidden">
- <aside class="sidebar"><div class="brand"><div class="brand-mark small">K<span>IS</span></div><div><b>KHMER INVENTORY</b><small>Management System</small></div></div>
- <div class="shop-label" id="shopLabel">My Shop</div><nav id="nav"></nav><div class="side-bottom"><span id="userLabel"></span><button id="logoutBtn" class="btn ghost full">ចាកចេញ ↗</button></div></aside>
- <main class="main"><header class="topbar"><button id="menuBtn" class="icon-btn">☰</button><div><h2 id="pageTitle">Dashboard</h2><small id="today"></small></div><div class="top-actions"><span class="status-pill">● Online</span><button id="currencyToggle" class="btn soft">USD / KHR</button></div></header>
+ <aside class="sidebar"><div class="brand"><div class="brand-mark small">K<span>IP</span></div><div><b>KHMER INVENTORY PRO</b><small>ប្រព័ន្ធគ្រប់គ្រងអាជីវកម្ម</small></div></div>
+ <div class="shop-label" id="shopLabel">ហាងរបស់ខ្ញុំ</div><nav id="nav"></nav><div class="side-bottom"><span id="userLabel"></span><button id="logoutBtn" class="btn ghost full">ចាកចេញ ↗</button></div></aside>
+ <main class="main"><header class="topbar"><button id="menuBtn" class="icon-btn">☰</button><div><h2 id="pageTitle">Dashboard</h2><small id="today"></small></div><div class="top-actions"><span class="status-pill">● ភ្ជាប់ប្រព័ន្ធ</span><button id="currencyToggle" class="btn soft">USD / KHR</button></div></header>
  <section id="content" class="content"></section>
  </main>
 </div>

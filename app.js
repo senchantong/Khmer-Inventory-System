@@ -5,7 +5,7 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const $ = s => document.querySelector(s);
 const state = {user:null, profile:null, page:"dashboard", currency:"USD", rate:4100, cart:[], products:[], customers:[], settings:{}};
 const menus = [
- ["dashboard","▦","Dashboard"],["pos","▣","POS / លក់"],["products","◫","Products / ទំនិញ"],["categories","▤","Categories / ប្រភេទ"],["brands","◇","Brands / ម៉ាក"],["invoices","▧","Invoices / វិក្កយបត្រ"],["history","◷","Sales History"],["customers","♙","Customers / អតិថិជន"],["suppliers","♧","Suppliers / អ្នកផ្គត់ផ្គង់"],["stockin","↓","Stock In / បញ្ចូលស្តុក"],["stockout","↑","Stock Out / ដកស្តុក"],["expenses","−","Expenses / ចំណាយ"],["reports","▥","Reports / របាយការណ៍"],["users","♧","Users & Roles"],["settings","⚙","Settings"]
+ ["dashboard","▦","ផ្ទាំងគ្រប់គ្រង"],["pos","▣","លក់ទំនិញ (POS)"],["products","◫","ទំនិញ"],["categories","▤","ប្រភេទទំនិញ"],["brands","◇","ម៉ាកទំនិញ"],["invoices","▧","វិក្កយបត្រ"],["history","◷","ប្រវត្តិការលក់"],["customers","♙","អតិថិជន"],["suppliers","♧","អ្នកផ្គត់ផ្គង់"],["stockin","↓","បញ្ចូលស្តុក"],["stockout","↑","ដកស្តុក"],["expenses","−","ចំណាយ"],["reports","▥","របាយការណ៍"],["users","♧","អ្នកប្រើប្រាស់ និងសិទ្ធិ"],["settings","⚙","ការកំណត់"]
 ];
 const titles = Object.fromEntries(menus.map(x=>[x[0],x[2]]));
 function money(n,cur=state.currency){n=Number(n||0);return cur==="KHR"?(n*state.rate).toLocaleString("en-US",{maximumFractionDigits:0})+" ៛":"$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}

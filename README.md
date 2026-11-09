@@ -1,3 +1,7 @@
+# Khmer Inventory Pro — Modern Khmer Edition
+
+កំណែរចនាថ្មី៖ UI ទំនើប ពណ៌ Navy/Purple, responsive សម្រាប់ទូរស័ព្ទ និងម៉ឺនុយជាភាសាខ្មែរ។
+
 # Khmer Inventory System — Full POS package
 
 This is a mobile-friendly, Supabase-backed starter release with the requested core modules:
@@ -39,3 +43,10 @@ Create each staff account in Supabase Authentication first. Then add a matching 
 - Login failure: verify Auth user exists, email/password are correct, and the matching profile row exists.
 - Permission denied: verify migration ran, `profiles.role` is owner/staff, and the logged-in user's profile UUID matches Auth UUID.
 - Never share a service_role key or database password.
+
+
+## ចំណាំអំពីកំណែ UI ថ្មី
+- កំណែនេះធ្វើបច្ចុប្បន្នភាពរូបរាង និងឈ្មោះផលិតផលជា Khmer Inventory Pro ព្រមទាំងបកប្រែម៉ឺនុយសំខាន់ៗជាភាសាខ្មែរ។
+- មុខងារទិន្នន័យនៅតែអាស្រ័យលើ Supabase schema និង SQL setup ដែលមានក្នុងថត `supabase/`។
+- មុខងារបង្ហោះរូបភាពទំនិញ, បំណុលពេញលេញ, ការទិញចូលពេញលេញ, ការបង្វិលទំនិញ និងការគ្រប់គ្រងសិទ្ធិលម្អិត ត្រូវការការអភិវឌ្ឍបន្ថែម មិនត្រូវសន្មតថាមានរួចទេ។
+- សូមសាកល្បងលើ Supabase project សាកល្បង និង Backup ទិន្នន័យមុន deploy ទៅ production។
